@@ -1,0 +1,32 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '2.0.4'
+    id 'scala'
+}
+
+group 'io.saagie'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile group: 'org.apache.spark', name: "spark-core_$scalaMajor", version: spark
+    compile group: 'org.apache.spark', name: "spark-sql_$scalaMajor", version: spark
+    compile group: 'org.apache.spark', name: "spark-streaming_$scalaMajor", version: spark
+    compile group: 'org.apache.spark', name: "spark-streaming-kafka-0-10_$scalaMajor", version: spark
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
+    compile group: 'org.apache.bahir', name: "spark-streaming-twitter_$scalaMajor", version: spark
+    compile group: 'com.github.scopt', name: 'scopt_2.10', version: '3.0.0'
+    compile group: 'com.typesafe', name: 'config', version: '1.0.2'
+
+
+
+}
+
+shadowJar {
+    zip64 = true
+}
