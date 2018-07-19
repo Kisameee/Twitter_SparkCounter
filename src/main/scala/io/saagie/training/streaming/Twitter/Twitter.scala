@@ -47,8 +47,9 @@ object Twitter {
     val appName = "Twitter"
 
 
-    val stream = new StreamingContext(spark.sparkContext, Seconds(5))
-    val tweets = TwitterUtils.createStream(stream, None, Seq("#FIERSDETREBLEUS"))
+    val stream = new StreamingContext(spark.sparkContext, Seconds(3))
+//    stream.checkpoint("/home/soat/formation-spark/blank-gradle-project/src/tmp/")
+    val tweets = TwitterUtils.createStream(stream, None, Seq("#WorldEmojiDay"))
 
     val pairs = tweets.flatMap(status => status.getURLEntities)
       .map(_.getExpandedURL).map(url => if (url.contains("twitter")) ("interne", 1) else ("externe", 1))
